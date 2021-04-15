@@ -2,43 +2,47 @@ extends layout
 
 block content
   h1= title
+  if (toshow == null)
+    h2 no instance found for updating 
+  else 
+       
 
-  - let universityid = toShow._id
-  - let universityname = toShow.universityname
-  - let degree = toShow.degree
-  - let fee = toShow.fee
-  
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{universityid}
-  - let actionid = "/resource/resource/universitys/" + universityid
-  form(id='universityForm', action= actionid, method="PUT")
-    div.form-group
-        label.costumeAttr(for='universityname') University name
-        input#universityname(type='text', name='universityname', value= universityname )
-    div.form-group
-        label.costumeAttr(for='degree') University degree
-        input#degree(type='text', name='degree', value= degree )
-    div.form-group
-        label.costumeAttr(for='fee') University Fee
-        input#fee(type='number', name='fee', value= fee )
-    input(type="submit")
+    - let universityid = toShow._id
+    - let universityname = toShow.universityname
+    - let degree = toShow.degree
+    - let fee = toShow.fee
+    
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{universityid}
+    - let actionid = "/resource/resource/universitys/" + universityid
+    form(id='universityForm', action= actionid, method="PUT")
+        div.form-group
+            label.costumeAttr(for='universityname') University name
+            input#universityname(type='text', name='universityname', value= universityname )
+        div.form-group
+            label.costumeAttr(for='degree') University degree
+            input#degree(type='text', name='degree', value= degree )
+        div.form-group
+            label.costumeAttr(for='fee') University Fee
+            input#fee(type='number', name='fee', value= fee )
+        input(type="submit")
 
-  script.
-    document.forms['universityForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error )
-      });
-    });
+    script.
+        document.forms['universityForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Update succeded")
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error )
+        });
+        });
 
