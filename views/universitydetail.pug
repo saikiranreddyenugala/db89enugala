@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1(id="myTitle")= title
+
+  - let universityid = toShow._id
+  - let universityName = toShow.universityname
+  - let universityDegree = toShow.degree
+  - let universutyFee = toShow.fee
+  div
+    div.row
+      div(class='costumeAttr mr-3') University ID is:
+      div(class="myEles") #{universityid}
+    div.row
+      div(class='costumeAttr mr-3') University name is:
+      div(class="myEles") #{universityName}
+    div.row
+      div(class='costumeAttr mr-3') University degree is:
+      div(class="myEles") #{universityDegree}
+    div.row
+      div(class='costumeAttr mr-3') University fee is:
+      div(class="myEles") #{universutyFee}

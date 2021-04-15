@@ -3,7 +3,7 @@ extends layout
 block content
   div(class="container-fluid")
   h1= title
-  - var result=[{universityname:"nwmsu",degree:"Graduate",fee:2000.00},{universityname:"kakatiya university",degree:"undergraduate",fee:3000.00},{universityname:"north texas",degree:"graduate",fee:2500.00}]
+  - var result=results
   div(class="row")
     each form in result
       div(class = "col-sm-2") #{form.universityname}
