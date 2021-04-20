@@ -4,8 +4,10 @@ block content
   div(class="container-fluid")
   h1= title
   - var result=results
-  div(class="row")
+  div(class="row m-1")
     each form in result
+      - let destination = `dispatch(\"/university/update?id=${form._id}\")`
       div(class = "col-sm-2") #{form.universityname}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
       div(class = "col-sm-2") #{form.degree}
       div(class = "col-sm-2") #{form.fee}
