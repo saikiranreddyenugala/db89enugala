@@ -79,7 +79,7 @@ app.use(function(err, req, res, next) {
 async function recreateDB(){
 // Delete everything
 await University.deleteMany();
-let instance1 = new University({universityname:"nwmsu",degree:"Graduate",fee:2000.00});
+let instance1 = new University({universityname:"nwmsu",degree:"Graduate",fee:2001.00});
 instance1.save( function(err,doc) {
 if(err) return console.error(err);
 console.log("First object saved")

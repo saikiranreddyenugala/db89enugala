@@ -1,13 +1,32 @@
 extends layout
 
 block content
-  div(class="container-fluid")
+
   h1= title
-  - var result=results
+  - let universitys =results
+  - let destinationcreate = `dispatchCreate(\"/universityes/create\")`
+  div(class="container-fluid")
+    button.btn( class="btn-primary ml-1 btn-lg", onclick= destinationcreate) Create
   div(class="row m-1")
-    each form in result
-      - let destination = `dispatch(\"/university/update?id=${form._id}\")`
-      div(class = "col-sm-2") #{form.universityname}
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
-      div(class = "col-sm-2") #{form.degree}
-      div(class = "col-sm-2") #{form.fee}
+    each university in universitys
+      - let destinationupdate = `dispatch(\"/university/update?id=${university._id}\")`
+      -let destinationdetail =   `dispatch(\"/university/detail?id=${university._id}\")`
+      - let destinationdelete = `dispatchDelete(\"/university/delete?id=${university._id}\")`
+        div(class="col-sm-4  m-1" style=("font-weight:bolder")) #{university.universityname} - #{university.degree} - #{university.fee} 
+          button.btn( class="btn-success ml-1", onclick= destinationdetail) Detail
+          button.btn( class="btn-info ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-danger ml-1", onclick= destinationdelete) Delete
+  script.
+        function dispatch(path){
+        window.location.href=path
+        }
+        function buy(itemNo)
+        {
+          alert(`You purchased Item ${itemNo+1}`)
+        }
+        function dispatchCreate(path){
+          window.location.href=path
+        }
+        function dispatchDelete(path){
+          window.location.href=path
+        }    

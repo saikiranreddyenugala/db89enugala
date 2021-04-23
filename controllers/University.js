@@ -39,7 +39,8 @@ exports.university_create_post = async function (req, res) {
         res.send(result);
     }
     catch (err) {
-        res.error(500, `{"error": ${err}}`);
+        res.send(err);
+        res.status(500);
     }
 };
 // Handle university delete form on DELETE.
